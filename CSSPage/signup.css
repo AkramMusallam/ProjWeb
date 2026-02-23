@@ -1,0 +1,206 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: var(--bg-body);
+}
+
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #1a1a1a;
+    }
+
+    .login-container {
+        background-color: #2a2a2a;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    }
+
+    label {
+        color: #ddd;
+    }
+
+    input {
+        background-color: var(--text-primary);
+        border-color: var(--text-secondary);
+        color: #fff;
+    }
+
+    .signup-text, .signup-text a {
+        color: #ccc;
+    }
+
+    .signup-text a:hover {
+        color: #fff;
+    }
+}
+
+.login-container {
+    width: 90%;
+    max-width: 400px;
+    background-color: var(--bg-card);
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.login-container:hover {
+    transform: translateY(-5px);
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.25rem;
+}
+
+.header img {
+    width: 40px;
+    height: auto;
+    margin-right: 10px;
+}
+
+.title-texts {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.title-texts h1 {
+    font-family: 'Fredoka One', cursive;
+    font-size: 2rem;
+    background: linear-gradient(90deg, #ff6a00, #ee0979);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+    margin: 0;
+}
+
+.title-texts h2 {
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.4rem;
+    font-weight: 900;
+    color: #ff6a00;
+    margin-top: 5px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+}
+
+label {
+    display: block;
+    margin-bottom: 0.3125rem;
+    font-weight: bold;
+    color: var(--text-primary);
+}
+
+input {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 0.9375rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input:focus {
+    border-color: #ff6a00;
+    box-shadow: 0 0 5px rgba(255, 106, 0, 0.5);
+    outline: none;
+}
+
+.login-btn {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #000;
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.login-btn:hover {
+    background-color: #222;
+    transform: scale(1.05);
+}
+
+.guest-btn {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: transparent;
+    border: 1px solid #000;
+    color: #000;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 0.625rem;
+    transition: all 0.3s ease;
+}
+
+.guest-btn:hover {
+    background-color: #000;
+    color: #fff;
+}
+
+.signup-text {
+    text-align: center;
+    margin-top: 0.9375rem;
+    font-size: 0.9rem;
+}
+
+.signup-text a {
+    color: #000;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.signup-text a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+    .login-container {
+        padding: 30px;
+    }
+
+    .title-texts h1 {
+        font-size: 1.75rem;
+    }
+
+    .title-texts h2 {
+        font-size: 1.1rem;
+    }
+
+    .header img {
+        width: 30px;
+    }
+}
+
+[data-theme="dark"] .login-container {
+    background: #1e293b;
+    color: #f1f5f9;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+[data-theme="dark"] .login-container input {
+    background: #0f172a;
+    color: #f1f5f9;
+    border-color: #334155;
+}
+[data-theme="dark"] .login-container label {
+    color: #94a3b8;
+}
+[data-theme="dark"] .signup-text a {
+    color: #60a5fa;
+}

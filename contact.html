@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>
+        (function(){var t=localStorage.getItem('theme');if(t==='dark')document.documentElement.setAttribute('data-theme','dark');})();
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - PC Builder</title>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="CSSPage/global.css">
+    <link rel="stylesheet" href="CSSPage/contact.css">
+</head>
+
+<body>
+
+<header class="navbar"></header>
+<script>document.addEventListener('DOMContentLoaded', () => generateNavbar('contact'));</script>
+
+<section class="contact-section">
+    <h1>Contact Us</h1>
+    <p>Have questions or need help building your PC?</p>
+    <p>We're here to help!</p>
+
+    <div style="margin: 25px 0; padding: 20px; background: linear-gradient(135deg, #f3f4f6, #e5e7eb); border-radius: 10px;">
+        <p style="margin: 5px 0;"><strong>📧 Email:</strong> support@pcbuilder.com</p>
+        <p style="margin: 5px 0;"><strong>📱 Phone:</strong> +970 59 000 0000</p>
+        <p style="margin: 5px 0;"><strong>📍 Location:</strong> Nablus, Palestine</p>
+    </div>
+
+    <h2 style="margin: 30px 0 20px 0; font-size: 1.5rem;">Send us a message</h2>
+
+    <form class="contact-form">
+        <input type="text" placeholder="Your Name *" required>
+        <input type="email" placeholder="Your Email *" required>
+        <textarea placeholder="Your Message *" rows="5" required></textarea>
+        <button type="submit">Send Message</button>
+    </form>
+</section>
+
+<footer class="footer">
+    <p>© 2026 PC Builder. All rights reserved.</p>
+</footer>
+
+<script src="../Js/utils.js"></script>
+<script src="../Js/contact.js"></script>
+
+</body>
+</html>
