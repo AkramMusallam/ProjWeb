@@ -12,15 +12,15 @@ async function checkAdminAccess() {
     try {
         const me = await API.auth.me();
         if (!me.loggedIn || me.user.role !== 'admin') {
-            alert('Access denied! Admins only.');
-            window.location.href = '../HTMLPage/login.html';
+            showNotification('Access denied! Admins only.', 'error');
+            setTimeout(() => { window.location.href = '../HTMLPage/login.html'; }, 1500);
             return;
         }
         localStorage.setItem('loggedInUser', me.user.username);
         localStorage.setItem('userRole', 'admin');
     } catch {
-        alert('Access denied!');
-        window.location.href = '../HTMLPage/login.html';
+        showNotification('Access denied!', 'error');
+        setTimeout(() => { window.location.href = '../HTMLPage/login.html'; }, 1500);
     }
 }
 

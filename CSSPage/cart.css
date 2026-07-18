@@ -1,4 +1,4 @@
-.section-box {
+﻿.section-box {
             max-width: 1100px;
             margin: 50px auto;
             padding: 30px;
@@ -78,7 +78,7 @@
         }
 
         .remove-btn::before {
-            content: "🗑️";
+            content: "\1F5D1";
             font-size: 16px;
         }
 
@@ -109,13 +109,13 @@
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            background: var(--primary);
             color: #fff;
         }
 
         .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 18px rgba(37,99,235,0.3);
+            box-shadow: 0 8px 18px var(--primary-light); background: var(--primary-hover);
         }
 
         .btn:not(.btn-primary) {

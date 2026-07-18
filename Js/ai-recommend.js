@@ -89,7 +89,7 @@ async function getRecommendation() {
     document.getElementById('recommend-result').style.display = 'none';
 
     try {
-        const res = await fetch('/api/recommend', {
+        const res = await fetch('http://localhost:3000/api/recommend', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ budget, usage }),
@@ -113,7 +113,7 @@ function renderRecommendation(data, budget, usage) {
 
     const b = data.build;
     const components = [
-        { icon: '🔧', label: 'Processor', ...b.processor },
+        { icon: '🔧', label: 'Processor', ...b.cpu },
         { icon: '🎮', label: 'Graphics Card', ...b.gpu },
         { icon: '🔲', label: 'Motherboard', ...b.motherboard },
         { icon: '💾', label: 'Memory', ...b.ram },
@@ -169,7 +169,7 @@ function applyRecommendation() {
     if (!b) return;
 
     const map = {
-        processor:    { key: 'Processor', cart: 'Processor' },
+        cpu:          { key: 'Processor', cart: 'Processor' },
         gpu:          { key: 'GPU',       cart: 'Graphics Card' },
         motherboard:  { key: 'Motherboard', cart: 'Motherboard' },
         ram:          { key: 'RAM',       cart: 'Memory' },

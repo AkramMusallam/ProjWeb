@@ -1,4 +1,4 @@
-const BASE_PRICE = 2000;
+const BASE_PRICE = 0;
 const priceDisplay = document.querySelector('.price');
 
 window.addEventListener('DOMContentLoaded', () => {
@@ -150,11 +150,23 @@ function updateProgressBar() {
         const keys = ['Processor','GPU','RAM','Storage','Motherboard','PSU','Cooling','Peripherals'];
         const items = [];
 
+        const catImages = {
+            'Processor': '../Image/cpuicon.png',
+            'GPU': '../Image/GraphicsCardicon.jfif',
+            'RAM': '../Image/RAMicon.png',
+            'Storage': '../Image/StorageIcon.png',
+            'Motherboard': '../Image/Motherboard.png',
+            'PSU': '../Image/PowerSupplyIcon.png',
+            'Cooling': '../Image/CoolingIcon.png',
+            'Peripherals': '../Image/PeripheralsIcon.png'
+        };
+
         keys.forEach(k => {
             const name  = localStorage.getItem(`selected${k}`);
             const price = parseInt(localStorage.getItem(`selected${k}Price`)) || 0;
             if (name && name !== 'None Selected') {
-                items.push({ name, price, category: k, image: '' });
+                const img = catImages[k] || '../Image/PCImage.png';
+                items.push({ name, price, category: k, image: img });
             }
         });
 
@@ -188,51 +200,6 @@ function updateProgressBar() {
         }
     }
 
-
-
-    window.addBuildToCart = addBuildToCart;
-
-    function addBuildToCart() {
-        const keys = ['Processor','GPU','RAM','Storage','Motherboard','PSU','Cooling','Peripherals'];
-        const items = [];
-
-        keys.forEach(k => {
-            const name  = localStorage.getItem(`selected${k}`);
-            const price = parseInt(localStorage.getItem(`selected${k}Price`)) || 0;
-            if (name && name !== 'None Selected') {
-                items.push({ name, price, category: k, image: '' });
-            }
-        });
-
-        if (items.length === 0) {
-            showNotification('No components selected yet!', 'warning');
-            return;
-        }
-
-        let added = 0;
-        items.forEach(item => {
-            const cart = JSON.parse(localStorage.getItem('cart') || '[]');
-            const exists = cart.findIndex(c => c.name === item.name);
-            if (exists === -1) {
-                cart.push(item);
-                localStorage.setItem('cart', JSON.stringify(cart));
-                added++;
-            }
-        });
-
-        if (typeof updateCartBadge === 'function') updateCartBadge();
-
-        showNotification(
-            added > 0
-                ? `✅ ${added} component${added > 1 ? 's' : ''} added to cart!`
-                : 'All components already in cart',
-            added > 0 ? 'success' : 'info'
-        );
-
-        if (added > 0) {
-            setTimeout(() => { window.location.href = 'cart.html'; }, 1000);
-        }
-    }
 
     window.addBuildToCart = addBuildToCart;
 }

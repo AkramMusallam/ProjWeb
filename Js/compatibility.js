@@ -5,7 +5,7 @@
 ============================================================ */
 
 const AI_COMPAT = {
-    endpoint: '/api/compatibility',
+    endpoint: 'http://localhost:3000/api/compatibility',
 
     /** Gather selected components from localStorage */
     getSelectedComponents() {
@@ -112,7 +112,7 @@ function renderCompatModal(result) {
         <div class="orders-modal-content" style="max-width:720px;">
             <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
                 <h2 style="margin:0;">🤖 AI Compatibility Report</h2>
-                <span class="ai-badge">Powered by Gemini</span>
+                <span class="ai-badge">Powered by Groq</span>
             </div>
 
             <div class="compat-status ${s.cls}">${s.text}</div>
@@ -323,4 +323,4 @@ async function showCompatibilityReport() {
 ============================================================ */
 window.showCompatibilityReport = showCompatibilityReport;
 
-console.log('🤖 AI Compatibility System loaded (Gemini)');
+console.log('🤖 AI Compatibility System loaded (Groq)');

@@ -46,7 +46,7 @@ function loadCart() {
         div.className = 'cart-item';
         div.innerHTML = `
             <div class="cart-left">
-                <img src="${escapeHtml(item.image)}" alt="${escapeHtml(item.name)}" onerror="this.src='../Image/PCImage.png'">
+                <img src="${item.image ? escapeHtml(item.image) : '../Image/PCImage.png'}" alt="${escapeHtml(item.name)}" onerror="this.src='../Image/PCImage.png'">
                 <div>
                     <p class="item-name">${escapeHtml(item.name)}</p>
                     <p class="item-price">

@@ -10,24 +10,25 @@
 }
 
 .btn-primary {
-    background: var(--dark);
+    background: var(--primary);
     color: #fff;
     border: none;
 }
 
 .btn-primary:hover {
-    background: #222;
+    background: var(--primary-hover);
     transform: translateY(-2px);
 }
 
 .btn-outline {
     background: transparent;
-    color: #000;
-    border: 2px solid #000;
+    color: var(--text-primary);
+    border: 2px solid var(--text-primary);
 }
 
 .btn-outline:hover {
-    background: var(--dark);
+    background: var(--primary);
+    border-color: var(--primary);
     color: #fff;
 }
 

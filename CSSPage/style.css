@@ -1,4 +1,4 @@
-.hero {
+﻿.hero {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -40,12 +40,12 @@
 }
 
 .primary-btn {
-    background: var(--dark);
+    background: var(--primary);
     color: #fff;
 }
 
 .primary-btn:hover {
-    background: #222;
+    background: var(--primary-hover);
 }
 
 .secondary-btn {
@@ -55,7 +55,7 @@
 }
 
 .secondary-btn:hover {
-    background: var(--dark);
+    background: var(--primary);
     color: #fff;
 }
 
@@ -130,3 +130,4 @@
 .cart-btn:hover {
     background: #2563eb;
 }
+

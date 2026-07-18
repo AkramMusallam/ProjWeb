@@ -44,7 +44,7 @@ async function callGroq(prompt) {   // ← خطأ 2: كان callGROQ لكن safe
             "Authorization": `Bearer ${GROQ_KEY}`
         },
         body: JSON.stringify({
-            model: "llama-3.3-70b-versatile",
+            model: "allam-2-7b",
             messages: [{ role: "user", content: prompt }],
             temperature: 0.3,
             max_tokens: 1200
