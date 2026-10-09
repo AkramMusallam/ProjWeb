@@ -16,7 +16,18 @@ if (!GROQ_KEY) {
     process.exit(1)
 }
 
-app.use(helmet({ contentSecurityPolicy: false }))
+app.use(helmet({
+    contentSecurityPolicy: {
+        directives: {
+            defaultSrc: ["'self'"],
+            scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'"],
+            styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
+            fontSrc: ["'self'", "https://fonts.gstatic.com", "data:"],
+            imgSrc: ["'self'", "data:", "http:", "https:"],
+            connectSrc: ["'self'", "http:", "https:"],
+        },
+    }
+}))
 app.use(cors())
 app.use(express.json({ limit: "10kb" }))
 
@@ -131,7 +142,23 @@ app.post('/api/recommend', aiLimiter, async (req, res) => {
     try {
         const { budget, usage } = req.body
         if (!budget || !usage) return res.status(400).json({ error: "Missing budget or usage" })
-        const prompt = `Recommend a complete PC build under $${budget} for ${usage}.\n\nReturn ONLY JSON:\n\n{"build":{"cpu":{"name":"string","price":number},"gpu":{"name":"string","price":number},"ram":{"name":"string","price":number},"storage":{"name":"string","price":number},"motherboard":{"name":"string","price":number},"psu":{"name":"string","price":number},"cooling":{"name":"string","price":number}},"reason":"short reasoning","performance":"performance estimate"}`
+        
+        let productsList = "[]";
+        try {
+            const pRes = await fetch("http://localhost/ProjWeb/api/products/list.php");
+            const pData = await pRes.json();
+            productsList = JSON.stringify(pData.map(p => ({name: p.name, price: p.price, category: p.category})));
+        } catch(e) { console.error("Could not fetch products for AI context", e); }
+
+        const prompt = `You are a PC Builder assistant for an e-commerce store.
+You MUST select components EXACTLY from this list of available store inventory:
+${productsList}
+
+Do NOT invent product names that are not in the list. Pick the best components that fit the budget.
+Recommend a complete PC build under $${budget} for ${usage}.
+
+Return ONLY JSON:
+{"build":{"cpu":{"name":"exact name from list","price":number},"gpu":{"name":"exact name from list","price":number},"ram":{"name":"...","price":number},"storage":{"name":"...","price":number},"motherboard":{"name":"...","price":number},"psu":{"name":"...","price":number},"cooling":{"name":"...","price":number}},"reason":"short reasoning","performance":"performance estimate"}`
         let data = await safeGroq(prompt)
         if (!data.build) data.build = {}
         const keys = ["cpu","gpu","ram","storage","motherboard","psu","cooling"]
